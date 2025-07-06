@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{title}}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-bg: #0a0f1a;
+      --main-color: #00ffe7;
+      --text-color: #e0e0e0;
+      --card-bg: #1c1f2b;
+      --accent: #ff6f61;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--main-bg);
+      color: var(--text-color);
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.4s ease;
+      overflow-x: hidden;
+    }
+
+    nav {
+      background: rgba(10, 15, 26, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #00ffe7, #007cf0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: -5px;
+      background: var(--main-color);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--main-color);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1rem 2rem;
+    }
+
+    h1, h2 {
+      color: var(--main-color);
+      margin-bottom: 1rem;
+    }
+
+    .form-wrapper {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 255, 231, 0.08);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #cccccc;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: none;
+      border-radius: 8px;
+      background: #2b2f3a;
+      color: var(--text-color);
+      font-size: 1rem;
+    }
+
+    .form-button {
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 30px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(255, 111, 97, 0.3);
+    }
+
+    .form-button:hover {
+      background: #ff5a4a;
+      box-shadow: 0 6px 20px rgba(255, 111, 97, 0.4);
+      transform: scale(1.05);
+    }
+
+    .flash-message {
+      background: #e74c3c;
+      padding: 0.75rem 1rem;
+      color: white;
+      margin-bottom: 1rem;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+        background: rgba(0, 0, 0, 0.8);
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 100%;
+        padding: 1rem 2rem;
+        display: none;
+      }
+
+      nav.active .nav-links {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Swadhin</div>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('home') }}">Home</a></li>
+      <li><a href="{{ url_for('about') }}">About</a></li>
+      <li><a href="{{ url_for('projects') }}">Projects</a></li>
+      <li><a href="{{ url_for('contact') }}">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>
